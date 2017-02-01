@@ -4,15 +4,14 @@
 # gather_facts: no
 
 #clone dspace repo
-#- name: dspace | clone
+- name: dspace | clone
   #sudo: yes
   #sudo_user: tomcat7
-#  git: repo={{dspace_git_repository}} dest={{dspace_source_dir}} accept_hostkey=yes version={{dspace_git_branch}} depth=1 key_file=~/.ssh/id_rsa.pub
-#  tags: dspace
+  git: repo={{dspace_git_repository}} dest={{dspace_source_dir}} accept_hostkey=yes version={{dspace_git_branch}} depth=1
+  tags: dspace
 
 # - name: dspace | create repo directory
-#   sudo: yes
-#   sudo_user: root
+#   become: yes
 #   file: path={{dspace_source_dir}} state=directory owner=tomcat7 group=tomcat7 mode=0777 recurse=yes
 #   tags: dspace
 

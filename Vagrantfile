@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.hostname = "dspace"
-  config.vm.box      = "ubuntu/trusty32"
+  config.vm.box      = "ubuntu/xenial64"
   config.vm.network "forwarded_port", guest: 80, host: 8081
   config.vm.network "private_network", ip: "192.168.50.10"
 
@@ -21,13 +21,14 @@ Vagrant.configure(2) do |config|
   end
 
  if ENV['DSPACE_SYNC_REPO']
-    config.vm.synced_folder ENV['DSPACE_SYNC_REPO'], "/srv/dspace-src", type: "nfs"
+    #config.vm.synced_folder ENV['DSPACE_SYNC_REPO'], "/srv/dspace-src", type: "nfs"
  end
 
+ config.vm.provision :shell, :inline => "sudo apt-get install python -y"
  config.vm.provision :ansible do |ansible|
   ansible.playbook = "site.yml"
   ansible.host_key_checking = false
-  ansible.extra_vars = { ansible_ssh_user: "vagrant", testing: true }
+  ansible.extra_vars = { ansible_ssh_user: "ubuntu", testing: true }
   #ansible.verbose = "vvvv"
  end
 

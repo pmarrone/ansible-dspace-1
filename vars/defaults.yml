@@ -12,15 +12,15 @@ dspace_db_user: dspace
 dspace_db_pass: dspace
 dspace_name: My Dspace
 dspace_default_language: en_US
-dspace_git_repository: git@git.unc.edu.ar:cdigitales/p167.git
-dspace_git_branch: dspace-5_x
+dspace_git_repository: https://github.com/DSpace/DSpace.git
+dspace_git_branch: dspace-6.0
 # Apache configuration
 server_hostname: dspace
 server_admin: d.space@example.org
 # Tomcat options
-tomcat_memory_max: 1024m
+tomcat_memory_max: 2048m
 tomcat_memory_min: 1024m
-tomcat_perm_size: 128m
+tomcat_perm_size: 256m
 #NFS conf
 # nfs_server_ip: 192.168.1.237
 # nfs_exported_filesystem: ~/git/dspace-src/

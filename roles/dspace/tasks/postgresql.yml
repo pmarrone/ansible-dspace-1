@@ -21,8 +21,7 @@
   - name: postgres | configure md5 auth for dspace database
     sudo: yes
     sudo_user: postgres
-    template: src=pg_hba.conf.j2 dest=/etc/postgresql/9.3/main/pg_hba.conf
+    template: src=pg_hba.conf.j2 dest=/etc/postgresql/9.5/main/pg_hba.conf
     notify:
       - restart postgresql
     tags: postgres
-

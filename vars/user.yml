@@ -8,8 +8,8 @@ dspace_install_dir: /srv/dspace
 dspace_source_dir: /srv/dspace-src
 dspace_name: My Dspace
 dspace_default_language: en_US
-dspace_git_repository: 
-dspace_git_branch: dspace-5_x
+dspace_git_repository: https://github.com/DSpace/DSpace.git
+dspace_git_branch: dspace-6.0
 # Apache configuration
 server_hostname: repository.example.org
 server_admin: d.space@example.org
