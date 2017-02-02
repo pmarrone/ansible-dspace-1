@@ -60,10 +60,12 @@
 - name: dspace | set up tomcat ROOT context
   shell: echo '<Context docBase="{{dspace_install_dir}}/webapps/xmlui"/>' > /var/lib/tomcat7/conf/Catalina/localhost/ROOT.xml
   tags: dspace
+  become: true
 
 
 - name: dspace | set up other tomcat contexts
   shell: echo '<Context docBase="{{dspace_install_dir}}/webapps/{{item}}"/>' > /var/lib/tomcat7/conf/Catalina/localhost/{{item}}.xml
+  become: true
   with_items:
      - solr
      - rdf
