@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
 
  if ENV['DSPACE_SYNC_REPO']
     #config.vm.synced_folder ENV['DSPACE_SYNC_REPO'], "/srv/dspace-src", type: "nfs"
-    config.vm.synced_folder ".", "/vagrant", type: "nfs"
+    #config.vm.synced_folder ".", "/vagrant", type: "nfs"
  end
 
  config.vm.provision :shell, :inline => "sudo apt-get install python -y"

@@ -10,7 +10,11 @@
     notify:
       - stop tomcat
     tags: deps
-
+    
+  - name: Syncronize maven cache
+    synchronize:
+      src: .m2
+      dest: ~/.m2
 
   # Drop our own server.xml file
   - name: tomcat | configure server.xml
