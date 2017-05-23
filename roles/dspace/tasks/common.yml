@@ -3,7 +3,6 @@
 - block:
   - name: deps | Install some needed deps
     apt: pkg={{item}} install_recommends=no update_cache=yes
-    become: true
     with_items:
       - python-software-properties # for ansible repo stuff (add-apt-repository)
       - python-psycopg2 # ansible postgres module dependency
