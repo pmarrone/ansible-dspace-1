@@ -1,0 +1,35 @@
+# This should be your Ansible playbooks to provision your containers.
+# An inventory will be automatically created using the names of the services
+# from your container.yml file.
+# Add any roles or other modules you'll need to this directory too.
+# For many examples of roles, check out Ansible Galaxy: https://galaxy.ansible.com/
+#
+---
+- hosts: all
+  gather_facts: no
+  pre_tasks:
+  - name: Install python
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+  - name: Allow sudo to be used
+    apt:
+      pkg: sudo
+      update_cache: yes
+  - name: Create default user
+    user:
+      name: dspaceadmin
+      comment: "DSpace Admin"
+      group: sudo
+  - name: Make sure user has passwordless sudo
+    lineinfile: 
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%sudo' 
+      line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+- hosts: all
+  user: dspaceadmin 
+  gather_facts: no
+  vars_files:
+      - vars/defaults.yml
+      - vars/user.yml
+  roles:
+      - dspace
