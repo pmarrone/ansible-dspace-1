@@ -1,7 +1,7 @@
 galaxy_info:
-  author: Patricio Marrone
-  description: DSpace Ansible container
-  company: Universidad Nacional de Córdoba
+  author: Your name
+  description: Describe your awesome application here.
+  company: Your company
 
   # If the issue tracker for your role is not on GitHub, uncomment the
   # next line and provide a value
@@ -14,9 +14,9 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license: MIT
+  license: license (GPLv2, CC-BY, etc)
 
-  min_ansible_container_version: 0.2.0
+  min_ansible_container_version: 0.9.0.0
 
   # Optionally specify the branch Galaxy will use when accessing the GitHub
   # repo for this role. During role install, if no tags are available,

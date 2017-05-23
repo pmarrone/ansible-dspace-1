@@ -1,0 +1,41 @@
+
+# Common general deps
+- block:
+  - name: deps | Install some needed deps
+    apt: 
+      pkg: '{{item}}'
+      install_recommends: no
+      update_cache: yes
+    with_items:
+      - python-software-properties # for ansible repo stuff (add-apt-repository)
+      - python-psycopg2 # ansible postgres module dependency
+      - git # for repo checkout
+      - apt-utils
+    tags: deps
+  # Install Oracle Java 7 using the webupd8 repository
+  - block:
+    - name: jdk8 | add webupd8team ppa
+      become: true
+      apt_repository: repo='ppa:webupd8team/java' update_cache=yes
+
+    - name: jdk8 | accept Oracle license
+      shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+
+    - name: jdk8 | install
+      apt: pkg={{item}} install_recommends=no
+      with_items:
+        - oracle-java8-installer
+        - oracle-java8-set-default
+    tags: oracle-jdk jdk
+    when: oracle_jdk
+    
+  - block:
+    - name: jdk8 | install
+      apt:
+        pkg: openjdk-8-jdk
+    tags: open-jdk jdk
+    when: not oracle_jdk
+    
+    
+  become: true
+  

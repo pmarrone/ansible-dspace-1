@@ -1,0 +1,19 @@
+---
+# tasks file for container-base
+- name: Install python
+  raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+- name: Allow sudo to be used
+  apt:
+    pkg: sudo
+    update_cache: yes
+- name: Create default user
+  user:
+    name: dspaceadmin
+    comment: "DSpace Admin"
+    group: sudo
+- name: Make sure user has passwordless sudo
+  lineinfile: 
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%sudo' 
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
